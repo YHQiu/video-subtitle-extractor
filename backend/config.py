@@ -211,7 +211,7 @@ GENERATE_TXT = True
 REC_BATCH_NUM = 6
 # DB算法每个batch识别多少张，默认为10
 # MAX_BATCH_SIZE = 10
-MAX_BATCH_SIZE = 100
+MAX_BATCH_SIZE = 25
 
 # 默认字幕出现区域为下方
 DEFAULT_SUBTITLE_AREA = SubtitleArea.UNKNOWN
