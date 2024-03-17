@@ -60,7 +60,7 @@ def extractor():
 
         # 构建命令行命令
         command = [
-            'python3', 'backend/main.py',
+            'python3', './backend/main.py',
             '--video_path', temp_filepath,
             '--y_min', str(subtitle_area[0]),
             '--y_max', str(subtitle_area[1]),

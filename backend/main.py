@@ -1007,7 +1007,7 @@ class SubtitleExtractor:
 
 
 if __name__ == '__main__':
-    multiprocessing.set_start_method("spawn")
+    # multiprocessing.set_start_method("spawn")
 
     parser = argparse.ArgumentParser(description='Extract subtitles from video.')
     parser.add_argument('--video_path', type=str, required=True, help='Path to the input video file')
