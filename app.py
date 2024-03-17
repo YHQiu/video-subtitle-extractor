@@ -73,7 +73,6 @@ def extractor():
             subprocess.run(command, check=True)
             srt_path = os.path.join(os.path.splitext(temp_filepath)[0] + '.srt')
             output_file = srt_path
-            backend.main.SubtitleExtractor(temp_filepath, subtitle_area).run()
 
             @after_this_request
             def remove_file(response):
