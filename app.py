@@ -6,6 +6,11 @@ from http.client import HTTPException
 from flask import Flask, request, send_from_directory, after_this_request
 from werkzeug.utils import secure_filename
 
+# 初次运行检查运行环境是否正常
+from paddle import fluid
+
+fluid.install_check.run_check()
+
 # Assuming your backend.db and backend.main modules are compatible with Flask or don't need specific adaptations.
 from backend.db import db_api
 import backend.main
