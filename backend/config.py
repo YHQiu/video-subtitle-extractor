@@ -84,7 +84,8 @@ if fluid.is_compiled_with_cuda():
 REC_CHAR_TYPE = settings_config['DEFAULT']['Language']
 
 # 设置识别模式
-MODE_TYPE = settings_config['DEFAULT']['Mode']
+# MODE_TYPE = settings_config['DEFAULT']['Mode']
+MODE_TYPE = 'auto'
 ACCURATE_MODE_ON = False
 if MODE_TYPE == 'accurate':
     ACCURATE_MODE_ON = True
@@ -209,7 +210,8 @@ GENERATE_TXT = True
 # 每张图中同时识别6个文本框中的文本，GPU显存越大，该数值可以设置越大
 REC_BATCH_NUM = 6
 # DB算法每个batch识别多少张，默认为10
-MAX_BATCH_SIZE = 10
+# MAX_BATCH_SIZE = 10
+MAX_BATCH_SIZE = 100
 
 # 默认字幕出现区域为下方
 DEFAULT_SUBTITLE_AREA = SubtitleArea.UNKNOWN
