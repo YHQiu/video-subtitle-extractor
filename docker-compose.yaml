@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   video-subtitle-extractor:
-    image: video-subtitle-extractor:1.0.0
+    image: video-subtitle-extractor:1.0.1
     container_name: video-subtitle-extractor
     build:
       context: .
