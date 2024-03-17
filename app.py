@@ -79,7 +79,7 @@ def extractor():
             def remove_file(response):
                 os.remove(temp_filepath)
                 return response
-
+            print(f"output_file={output_file}")
             return send_from_directory(directory=os.path.dirname(output_file),
                                        path=os.path.basename(output_file),
                                        as_attachment=True)
