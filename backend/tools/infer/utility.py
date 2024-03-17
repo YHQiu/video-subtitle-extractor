@@ -135,6 +135,13 @@ def init_args():
 
     parser.add_argument("--show_log", type=str2bool, default=False)
     parser.add_argument("--use_onnx", type=str2bool, default=False)
+
+    parser.add_argument('--video-path', type=str, required=True, help='Path to the input video file')
+    parser.add_argument('--y-min', type=int, required=True, help='Minimum y coordinate of the subtitle area')
+    parser.add_argument('--y-max', type=int, required=True, help='Maximum y coordinate of the subtitle area')
+    parser.add_argument('--x-min', type=int, required=True, help='Minimum x coordinate of the subtitle area')
+    parser.add_argument('--x-max', type=int, required=True, help='Maximum x coordinate of the subtitle area')
+
     return parser
 
 

@@ -1005,18 +1005,14 @@ class SubtitleExtractor:
             for sub in subs:
                 f.write(f'{sub.text}\n')
 
+from tools.infer.utility import parse_args
 
 if __name__ == '__main__':
-    # multiprocessing.set_start_method("spawn")
+    multiprocessing.set_start_method("spawn")
 
-    parser = argparse.ArgumentParser(description='Extract subtitles from video.')
-    parser.add_argument('--video-path', type=str, required=True, help='Path to the input video file')
-    parser.add_argument('--y-min', type=int, required=True, help='Minimum y coordinate of the subtitle area')
-    parser.add_argument('--y-max', type=int, required=True, help='Maximum y coordinate of the subtitle area')
-    parser.add_argument('--x-min', type=int, required=True, help='Minimum x coordinate of the subtitle area')
-    parser.add_argument('--x-max', type=int, required=True, help='Maximum x coordinate of the subtitle area')
+    args = parse_args()
 
-    args = parser.parse_args()
+    print(args)
 
     subtitle_area = (args.y_min, args.y_max, args.x_min, args.x_max)
 
