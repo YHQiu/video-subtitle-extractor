@@ -1,5 +1,6 @@
 import json
 import os
+import subprocess
 import uuid
 from http.client import HTTPException
 
@@ -15,12 +16,12 @@ fluid.install_check.run_check()
 from backend.db import db_api
 import backend.main
 
-import torch
-# 确保 CUDA 可用
-if torch.cuda.is_available():
-    # 创建一个随机张量并将其移到 GPU 上，以触发 CUDA 初始化
-    x = torch.rand(5, 5).cuda()
-    print(f"手动初始化CUDA {x}")
+# import torch
+# # 确保 CUDA 可用
+# if torch.cuda.is_available():
+#     # 创建一个随机张量并将其移到 GPU 上，以触发 CUDA 初始化
+#     x = torch.rand(5, 5).cuda()
+#     print(f"手动初始化CUDA {x}")
 
 app = Flask(__name__)
 # CORS(app, resources={r"/*": {"origins": "*"}})  # 仅用于示例，实际部署时应限制为真实的前端地址
@@ -34,7 +35,7 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/extractor', methods=['POST'])
-def remove_watermark():
+def extractor():
     """
     :param file 视频
     :param area 区域 (startY, endY, startX, endX)
@@ -57,8 +58,22 @@ def remove_watermark():
         area_list = json.loads(area)
         subtitle_area = (area_list[0], area_list[1], area_list[2], area_list[3])
 
+        # 构建命令行命令
+        command = [
+            'python', 'main.py',
+            '--video_path', temp_filepath,
+            '--y_min', str(subtitle_area[0]),
+            '--y_max', str(subtitle_area[1]),
+            '--x_min', str(subtitle_area[2]),
+            '--x_max', str(subtitle_area[3])
+        ]
+
         try:
-            output_file = backend.main.SubtitleExtractor(temp_filepath, subtitle_area).run()
+
+            subprocess.run(command, check=True)
+            srt_path = os.path.join(os.path.splitext(temp_filepath)[0] + '.srt')
+            output_file = srt_path
+            backend.main.SubtitleExtractor(temp_filepath, subtitle_area).run()
 
             @after_this_request
             def remove_file(response):
@@ -80,5 +95,4 @@ def main():
 
 if __name__ == "__main__":
     print(f"run in port 8003 start")
-    app.run(host='0.0.0.0', port=8003, debug=True)
-    print(f"run in port 8003 success")
+    app.run(host='0.0.0.0', port=8003, debug=False)

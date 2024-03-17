@@ -5,6 +5,7 @@
 @FileName: main.py
 @desc: 主程序入口文件
 """
+import argparse
 import os
 import random
 import shutil
@@ -194,7 +195,6 @@ class SubtitleExtractor:
         if config.GENERATE_TXT:
             srt_path = os.path.join(os.path.splitext(self.video_path)[0] + '.srt')
             self.srt2txt(srt_path)
-            return srt_path
 
     def extract_frame_by_fps(self):
         """
@@ -1008,16 +1008,19 @@ class SubtitleExtractor:
 
 if __name__ == '__main__':
     multiprocessing.set_start_method("spawn")
-    # 提示用户输入视频路径
-    video_path = input(f"{config.interface_config['Main']['InputVideo']}").strip()
-    # 提示用户输入字幕区域
-    try:
-        y_min, y_max, x_min, x_max = map(int, input(
-            f"{config.interface_config['Main']['ChooseSubArea']} (ymin ymax xmin xmax)：").split())
-        subtitle_area = (y_min, y_max, x_min, x_max)
-    except ValueError as e:
-        subtitle_area = None
+
+    parser = argparse.ArgumentParser(description='Extract subtitles from video.')
+    parser.add_argument('--video_path', type=str, required=True, help='Path to the input video file')
+    parser.add_argument('--y_min', type=int, required=True, help='Minimum y coordinate of the subtitle area')
+    parser.add_argument('--y_max', type=int, required=True, help='Maximum y coordinate of the subtitle area')
+    parser.add_argument('--x_min', type=int, required=True, help='Minimum x coordinate of the subtitle area')
+    parser.add_argument('--x_max', type=int, required=True, help='Maximum x coordinate of the subtitle area')
+
+    args = parser.parse_args()
+
+    subtitle_area = (args.y_min, args.y_max, args.x_min, args.x_max)
+
     # 新建字幕提取对象
-    se = SubtitleExtractor(video_path, subtitle_area)
+    se = SubtitleExtractor(args.video_path, subtitle_area)
     # 开始提取字幕
     se.run()
