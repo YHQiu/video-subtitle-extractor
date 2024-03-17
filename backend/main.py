@@ -192,7 +192,9 @@ class SubtitleExtractor:
         self.empty_cache()
         self.lock.release()
         if config.GENERATE_TXT:
-            self.srt2txt(os.path.join(os.path.splitext(self.video_path)[0] + '.srt'))
+            srt_path = os.path.join(os.path.splitext(self.video_path)[0] + '.srt')
+            self.srt2txt(srt_path)
+            return srt_path
 
     def extract_frame_by_fps(self):
         """
