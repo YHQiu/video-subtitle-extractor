@@ -67,6 +67,6 @@ def main():
     return {"message": "Welcome to the watermark removal API!"}
 
 if __name__ == "__main__":
-    print(f"run in prot 8000 start")
-    app.run(host='0.0.0.0', port=8000, debug=True)
-    print(f"run in prot 8000 success")
+    print(f"run in port 8003 start")
+    app.run(host='0.0.0.0', port=8003, debug=True)
+    print(f"run in port 8003 success")
