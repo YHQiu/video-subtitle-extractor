@@ -61,11 +61,11 @@ def extractor():
         # 构建命令行命令
         command = [
             'python3', './backend/main.py',
-            '--video_path', temp_filepath,
-            '--y_min', str(subtitle_area[0]),
-            '--y_max', str(subtitle_area[1]),
-            '--x_min', str(subtitle_area[2]),
-            '--x_max', str(subtitle_area[3])
+            '--video-path', temp_filepath,
+            '--y-min', str(subtitle_area[0]),
+            '--y-max', str(subtitle_area[1]),
+            '--x-min', str(subtitle_area[2]),
+            '--x-max', str(subtitle_area[3])
         ]
 
         try:
