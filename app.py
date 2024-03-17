@@ -15,6 +15,13 @@ fluid.install_check.run_check()
 from backend.db import db_api
 import backend.main
 
+import torch
+# 确保 CUDA 可用
+if torch.cuda.is_available():
+    # 创建一个随机张量并将其移到 GPU 上，以触发 CUDA 初始化
+    x = torch.rand(5, 5).cuda()
+    print(f"手动初始化CUDA {x}")
+
 app = Flask(__name__)
 # CORS(app, resources={r"/*": {"origins": "*"}})  # 仅用于示例，实际部署时应限制为真实的前端地址
 
