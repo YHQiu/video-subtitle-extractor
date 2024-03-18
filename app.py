@@ -68,10 +68,10 @@ def extractor():
             '--y-max', str(subtitle_area[1]),
             '--x-min', str(subtitle_area[2]),
             '--x-max', str(subtitle_area[3]),
-            '--gpu_mem', 1024,
-            '--max_batch_size', 256,
-            '--cls_batch_num', 256,
-            '--use_onnx', "True",
+            '--gpu_mem', str(1024),
+            '--max_batch_size', str(256),
+            '--cls_batch_num', str(256),
+            '--use_onnx', str(True),
         ]
 
         try:
