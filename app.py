@@ -67,26 +67,29 @@ def extractor():
             '--y-min', str(subtitle_area[0]),
             '--y-max', str(subtitle_area[1]),
             '--x-min', str(subtitle_area[2]),
-            '--x-max', str(subtitle_area[3])
+            '--x-max', str(subtitle_area[3]),
+            '--gpu_mem', 1024,
+            '--max_batch_size', 256,
+            '--use_onnx', True,
         ]
 
         try:
 
-            def task(complete_event):
-                # 假设 temp_filepath 和 subtitle_area 已经被定义
-                backend.main.SubtitleExtractor(temp_filepath, subtitle_area).run()
-                complete_event.set()  # 任务完成时设置事件
+            # def task(complete_event):
+            #     # 假设 temp_filepath 和 subtitle_area 已经被定义
+            #     backend.main.SubtitleExtractor(temp_filepath, subtitle_area).run()
+            #     complete_event.set()  # 任务完成时设置事件
+            #
+            # # 创建一个 Event 对象来跟踪任务是否完成
+            # task_complete_event = Event()
+            #
+            # # 启动线程，传递 Event 对象
+            # Thread(target=task, args=(task_complete_event,), daemon=True).start()
+            #
+            # # 在主线程中等待任务完成
+            # task_complete_event.wait()
 
-            # 创建一个 Event 对象来跟踪任务是否完成
-            task_complete_event = Event()
-
-            # 启动线程，传递 Event 对象
-            Thread(target=task, args=(task_complete_event,), daemon=True).start()
-
-            # 在主线程中等待任务完成
-            task_complete_event.wait()
-
-            # subprocess.run(command, check=True)
+            subprocess.run(command, check=True)
             srt_path = os.path.join(os.path.splitext(temp_filepath)[0] + '.srt')
             output_file = srt_path
 
