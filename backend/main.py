@@ -1015,7 +1015,7 @@ if __name__ == '__main__':
         x = torch.rand(5, 5).cuda()
         print(f"手动初始化CUDA {x}")
 
-    # multiprocessing.set_start_method("spawn")
+    multiprocessing.set_start_method("spawn")
 
     args = parse_args()
 

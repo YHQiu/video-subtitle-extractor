@@ -3,10 +3,12 @@ import os
 import subprocess
 import uuid
 from http.client import HTTPException
+from threading import Thread
 
 from flask import Flask, request, send_from_directory, after_this_request
 from werkzeug.utils import secure_filename
 
+import backend.main
 # # 初次运行检查运行环境是否正常
 # from paddle import fluid
 #
@@ -70,7 +72,11 @@ def extractor():
 
         try:
 
-            subprocess.run(command, check=True)
+            def task():
+                backend.main.SubtitleExtractor(temp_filepath, subtitle_area).run()
+
+            Thread(target=task, daemon=True).start()
+            # subprocess.run(command, check=True)
             srt_path = os.path.join(os.path.splitext(temp_filepath)[0] + '.srt')
             output_file = srt_path
 
