@@ -85,7 +85,7 @@ REC_CHAR_TYPE = settings_config['DEFAULT']['Language']
 
 # 设置识别模式
 # MODE_TYPE = settings_config['DEFAULT']['Mode']
-MODE_TYPE = 'accurate'
+MODE_TYPE = 'fast'
 ACCURATE_MODE_ON = False
 if MODE_TYPE == 'accurate':
     ACCURATE_MODE_ON = True
