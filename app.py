@@ -71,7 +71,6 @@ def extractor():
             '--gpu_mem', str(1024),
             '--max_batch_size', str(256),
             '--cls_batch_num', str(256),
-            '--use_onnx', str(True),
         ]
 
         try:
