@@ -33,6 +33,9 @@ ALLOWED_EXTENSIONS = {'mp4', 'mov'}
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+# 设置上传文件大小限制为500MB
+app.config['MAX_CONTENT_LENGTH'] = 1500 * 1024 * 1024  # 1500MB
+
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
