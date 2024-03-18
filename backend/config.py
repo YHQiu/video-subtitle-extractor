@@ -85,7 +85,7 @@ REC_CHAR_TYPE = settings_config['DEFAULT']['Language']
 
 # 设置识别模式
 # MODE_TYPE = settings_config['DEFAULT']['Mode']
-MODE_TYPE = 'auto'
+MODE_TYPE = 'accurate'
 ACCURATE_MODE_ON = False
 if MODE_TYPE == 'accurate':
     ACCURATE_MODE_ON = True
@@ -208,7 +208,8 @@ if REC_CHAR_TYPE in MULTI_LANG:
 GENERATE_TXT = True
 
 # 每张图中同时识别6个文本框中的文本，GPU显存越大，该数值可以设置越大
-REC_BATCH_NUM = 6
+# REC_BATCH_NUM = 6
+REC_BATCH_NUM = 1
 # DB算法每个batch识别多少张，默认为10
 # MAX_BATCH_SIZE = 10
 MAX_BATCH_SIZE = 25
