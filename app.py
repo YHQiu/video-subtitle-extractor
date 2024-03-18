@@ -75,6 +75,9 @@ def extractor():
 
         try:
 
+            # 手动打印命令
+            print("Executing command:", " ".join(command))
+
             subprocess.run(command, check=True)
             srt_path = os.path.join(os.path.splitext(temp_filepath)[0] + '.srt')
             output_file = srt_path
