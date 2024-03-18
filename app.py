@@ -59,7 +59,16 @@ def extractor():
         unique_filename = f"temp_{uuid.uuid4()}.{filename.rsplit('.', 1)[1].lower()}"
         temp_filepath = os.path.join(app.config['UPLOAD_FOLDER'], unique_filename)
 
-        file.save(temp_filepath)
+        # file.save(temp_filepath)
+        # 使用流式写入文件
+        with open(temp_filepath, 'wb') as f:
+            chunk_size = 4096  # 可以根据需要调整块的大小
+            while True:
+                chunk = file.stream.read(chunk_size)
+                if len(chunk) == 0:
+                    break
+                f.write(chunk)
+
         area_list = json.loads(area)
         subtitle_area = (area_list[0], area_list[1], area_list[2], area_list[3])
 
