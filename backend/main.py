@@ -1008,12 +1008,6 @@ class SubtitleExtractor:
 from tools.infer.utility import parse_args
 
 if __name__ == '__main__':
-    # import torch
-    # # 确保 CUDA 可用
-    # if torch.cuda.is_available():
-    #     # 创建一个随机张量并将其移到 GPU 上，以触发 CUDA 初始化
-    #     x = torch.rand(5, 5).cuda()
-    #     print(f"手动初始化CUDA {x}")
 
     multiprocessing.set_start_method("spawn")
 
