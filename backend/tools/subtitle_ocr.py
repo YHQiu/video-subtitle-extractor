@@ -4,9 +4,9 @@ from multiprocessing import Queue, Process
 import cv2
 from PIL import ImageFont, ImageDraw, Image
 from tqdm import tqdm
-from backend.tools.ocr import OcrRecogniser, get_coordinates
-from backend.tools.constant import SubtitleArea
-from backend.tools import constant
+from tools.ocr import OcrRecogniser, get_coordinates
+from tools.constant import SubtitleArea
+from tools import constant
 from threading import Thread
 import queue
 from shapely.geometry import Polygon

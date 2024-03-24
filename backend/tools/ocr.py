@@ -1,6 +1,6 @@
-from backend.tools.infer import utility
-from backend.tools.infer.predict_system import TextSystem
-from backend import config
+from tools.infer import utility
+from tools.infer.predict_system import TextSystem
+import config
 import importlib
 
 

@@ -28,13 +28,13 @@ import json
 import time
 import logging
 from PIL import Image
-import backend.tools.infer.utility as utility
-import backend.tools.infer.predict_rec as predict_rec
-import backend.tools.infer.predict_det as predict_det
-import backend.tools.infer.predict_cls as predict_cls
-from backend.ppocr.utils.utility import get_image_file_list, check_and_read_gif
-from backend.ppocr.utils.logging import get_logger
-from backend.tools.infer.utility import draw_ocr_box_txt, get_rotate_crop_image
+import tools.infer.utility as utility
+import tools.infer.predict_rec as predict_rec
+import tools.infer.predict_det as predict_det
+import tools.infer.predict_cls as predict_cls
+from ppocr.utils.utility import get_image_file_list, check_and_read_gif
+from ppocr.utils.logging import get_logger
+from tools.infer.utility import draw_ocr_box_txt, get_rotate_crop_image
 logger = get_logger()
 
 
